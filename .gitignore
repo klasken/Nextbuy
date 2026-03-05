@@ -1,2 +1,5 @@
 venv
 datasets
+.gitignore
+notebook-antoine.ipynb
+notebook-oles.ipynb
