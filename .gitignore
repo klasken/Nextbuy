@@ -1,6 +1,5 @@
 venv
 datasets
 notebook-antoine.ipynb
-notebook-marius.ipynb
-notebook.ipynb
-.gitignore
+notebook-oles.ipynb
+*.joblib
