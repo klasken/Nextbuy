@@ -53,6 +53,9 @@ if st.button(label="Le client va t'il recommander ?"):
         st.warning("Ce produit n'a pas été vu lors de l'entraînement du modèle, veuillez en choisir un autre !")
     else:
         encode_chiffre = le_produit.transform([produit_choisi])[0]
+
+        model_columns = joblib.load("model_columns.joblib")
+
         X_predict = pd.DataFrame({
             "order_hour_of_day" : [heure],
             "order_dow" : [jour_index],
@@ -60,15 +63,33 @@ if st.button(label="Le client va t'il recommander ?"):
             "product_name" : [encode_chiffre],
             "add_to_cart_order" : [position]
         })
-
-        model_columns = joblib.load("model_columns.joblib")
-
         X_predict = X_predict[model_columns]
 
         probabilites = model.predict_proba(X_predict)
         proba_reachat = probabilites[0][1]
         seuil = 0.4
+
         if proba_reachat >= seuil:
             st.success(f"Le client va recommander ! (Probabilité : {proba_reachat:.1%})")
         else:
             st.error(f"Le client ne va probablement pas recommander (Probabilité : {proba_reachat:.1%})")
+
+        st.markdown("---")
+        st.subheader(f"Meilleure heure de la journée pour recommander ce produit")
+
+        heures_journee = list(range(24))
+        df_simul = pd.DataFrame({
+            "order_hour_of_day": heures_journee,
+            "order_dow": [jour_index] * 24,
+            "days_since_prior_order": [delai] * 24,
+            "product_name": [encode_chiffre] * 24,
+            "add_to_cart_order": [position] * 24
+        })
+
+        df_simul = df_simul[model_columns]
+        probas_heures = model.predict_proba(df_simul)[:, 1]
+
+        df_chart = pd.DataFrame({
+            "Probabilité de réachat": probas_heures
+        }, index=heures_journee)
+        st.line_chart(df_chart)
