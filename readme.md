@@ -1,6 +1,6 @@
 # NextBuy : Assistant de Prédiction de Réachat
 
-NextBuy est un projet de Data Science visant à analyser les comportements d'achat sur la plateforme Instacart et à prédire la probabilité qu'un utilisateur commande à nouveau un produit spécifique lors de sa prochaine visite.
+NextBuy est un projet de Data Science visant à analyser les comportements d'achat et à prédire la probabilité qu'un utilisateur commande à nouveau un produit spécifique lors de sa prochaine visite.
 
 Le projet combine des analyses exploratoires approfondies réalisées par plusieurs analystes et un outil de prédiction interactif propulsé par Streamlit.
 
