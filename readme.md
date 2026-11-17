@@ -4,17 +4,40 @@ NextBuy est un projet de Data Science réalisé en équipe à Epitech Lille. Il 
 
 Le projet combine des analyses exploratoires approfondies réalisées par plusieurs analystes et un outil de prédiction interactif propulsé par Streamlit.
 
+![Dashboard NextBuy](images/dashboard.png)
+*Le dashboard Streamlit : on choisit un produit et un contexte de commande, le modèle donne la probabilité de réachat et le meilleur moment de la journée pour proposer le produit.*
+
 ## Table des Matières
 - Aperçu du Projet
+- Quelques Analyses
 - Structure du Dépôt
 - Installation et Configuration
 - Utilisation
 
 ## Aperçu du Projet
 L'objectif est de répondre à des problématiques métier telles que :
+
 * Analyse temporelle : Identifier quand les clients passent commande (pics horaires et journaliers).
 * Segmentation client : Distinguer les profils d'acheteurs (nocturnes, occasionnels, etc.).
 * Prédiction : Anticiper le réachat d'un produit selon l'heure, le jour et le délai depuis la dernière commande.
+
+## Quelques Analyses
+
+Les données couvrent 1,4 million de commandes passées par environ 200 000 clients.
+
+<p align="center">
+  <img src="images/commandes_par_heure.png" width="49%" alt="Nombre de commandes selon l'heure de la journée">
+  <img src="images/top_produits_samedi.png" width="49%" alt="Produits les plus achetés le samedi">
+</p>
+<p align="center">
+  <img src="images/profils_clients.png" width="49%" alt="Répartition des profils de clients">
+  <img src="images/reachat_jour_heure.png" width="49%" alt="Probabilité de réachat selon le jour et l'heure">
+</p>
+
+* Les commandes se concentrent entre 9h et 16h, avec très peu d'activité la nuit.
+* Les fruits et légumes frais (bananes, fraises, épinards, avocats) dominent les achats du samedi.
+* Plus de 40 % des clients sont des acheteurs occasionnels ; les acheteurs nocturnes et les « accros au panier » restent minoritaires.
+* La probabilité de réachat culmine en début de matinée (6h-9h), avec un pic le lundi vers 7h.
 
 ## Structure du Dépôt
 * nextbuy_dashboard.py : L'application interactive Streamlit.
@@ -24,6 +47,7 @@ L'objectif est de répondre à des problématiques métier telles que :
 * datasets/ : Dossier contenant les fichiers CSV (aisles, departments, order_products, orders, products). Non versionné.
 * model.joblib : Le modèle de Machine Learning entraîné. Non versionné (voir ci-dessous).
 * encoders.joblib & model_columns.joblib : Fichiers de prétraitement pour le dashboard. Non versionnés.
+* images/ : Captures du dashboard et graphiques issus des notebooks, utilisés dans ce README.
 
 ## Installation et Configuration
 
